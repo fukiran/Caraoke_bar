@@ -9,10 +9,10 @@ class TestRoom(unittest.TestCase):
         self.room_1 = Room("Bongo", 3, 20)
         self.room_2 = Room("Studio 24", 5, 30)
 
-        self.guest_1 = Guest("Pierre",50)
-        self.guest_2 = Guest("Alexander",40)
-        self.guest_3 = Guest("Pepe",30)
-        self.guest_4 = Guest("Edi",5)
+        self.guest_1 = Guest("Pierre",50,"Gotta Go")
+        self.guest_2 = Guest("Alexander",40,"On My Radio")
+        self.guest_3 = Guest("Pepe",30,"Divorce a I'ltalienne")
+        self.guest_4 = Guest("Edi",5,"Gotta Go")
 
         self.song_1 = Song("Gotta Go", "Agnostic Front", 3.2)
         self.song_2 = Song("On My Radio", "Selecter", 3.52)
@@ -41,8 +41,11 @@ class TestRoom(unittest.TestCase):
 
     def test_add_guest_to_list(self):
         self.room_1.add_guest_to_list(self.guest_1,self.room_1)
+        #check if guest is added to the list
         self.assertEqual(1,len(self.room_1.guest_list))
+        #check if money is taken from the guest
         self.assertEqual(30,self.guest_1.cash)
+        #check if money is added to the till
         self.assertEqual(120,self.room_1.check_till(self.room_1))
     
     def test_add_guests_to_list(self):
@@ -85,7 +88,7 @@ class TestRoom(unittest.TestCase):
 
 
     def test_check_if_guest_has_enought_money(self):
-        self.assertEqual("No money, no honey",self.room_2.add_guest_to_list(self.guest_4,self.room_2))
+        self.assertEqual("No money, no caraoke",self.room_2.add_guest_to_list(self.guest_4,self.room_2))
 
 
     def test_check_if_guest_has_enought_money2(self):
@@ -105,5 +108,9 @@ class TestRoom(unittest.TestCase):
     def test_check_if_fee_add_to_till(self):
         self.room_1.add_entry_fee_to_till(self.room_1)
         self.assertEqual(120,self.room_1.check_till(self.room_1))
+
+
+    
+
 
     
