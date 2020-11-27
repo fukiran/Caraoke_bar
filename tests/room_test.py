@@ -6,13 +6,13 @@ from src.room import Room
 
 class TestRoom(unittest.TestCase):
     def setUp(self):
-        self.room_1 = Room("Bongo", 3)
-        self.room_2 = Room("Studio 24", 5)
+        self.room_1 = Room("Bongo", 3, 20)
+        self.room_2 = Room("Studio 24", 5, 30)
 
-        self.guest_1 = Guest("Pierre")
-        self.guest_2 = Guest("Alexander")
-        self.guest_3 = Guest("Pepe")
-        self.guest_4 = Guest("Edi")
+        self.guest_1 = Guest("Pierre",50)
+        self.guest_2 = Guest("Alexander",40)
+        self.guest_3 = Guest("Pepe",30)
+        self.guest_4 = Guest("Edi",5)
 
         self.song_1 = Song("Gotta Go", "Agnostic Front", 3.2)
         self.song_2 = Song("On My Radio", "Selecter", 3.52)
@@ -25,6 +25,10 @@ class TestRoom(unittest.TestCase):
 
     def test_room_has_capacity(self):
         self.assertEqual(True,isinstance(self.room_1.capacity,int))
+
+
+    def test_room_entry_fee(self):
+        self.assertEqual(30, self.room_2.entry_fee)
 
 
     def test_guest_list_empty(self):
@@ -62,8 +66,6 @@ class TestRoom(unittest.TestCase):
         self.room_1.add_guest_to_list(self.guest_2,self.room_1)
         self.room_1.add_guest_to_list(self.guest_3,self.room_1)
         self.assertEqual(self.room_1.capacity,len(self.room_1.guest_list))
-
-
     
 
     def test_to_many_guests_in_room(self):
@@ -79,3 +81,17 @@ class TestRoom(unittest.TestCase):
         self.room_1.add_guest_to_list(self.guest_3,self.room_1)
         self.room_1.add_guest_to_list(self.guest_4,self.room_1)
         self.assertEqual(self.room_1.capacity,len(self.room_1.guest_list))
+
+
+    def test_check_if_guest_has_enought_money(self):
+        self.assertEqual("No money, no honey",self.room_2.add_guest_to_list(self.guest_4,self.room_2))
+
+
+    def test_check_if_guest_has_enought_money2(self):
+        self.room_2.add_guest_to_list(self.guest_4,self.room_2)
+        self.assertEqual([],self.room_1.guest_list)
+    
+
+    def test_check_if_guest_has_enought_money2(self):
+        self.room_2.add_guest_to_list(self.guest_3,self.room_2)
+        self.assertEqual(1,len(self.room_2.guest_list))
