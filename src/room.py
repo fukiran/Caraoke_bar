@@ -5,6 +5,7 @@ class Room:
         self.entry_fee = entry_fee
         self.guest_list = []
         self.song_list = []
+        self.till = 100
 
 
     def add_guest_to_list(self,guest,room):
@@ -13,7 +14,8 @@ class Room:
         if room.entry_fee > guest.cash:
             return "No money, no honey"
         self.guest_list.append(guest)
-
+        guest.pay_entry_fee(guest,room)
+        self.add_entry_fee_to_till(room)
 
     def remove_guest_from_list(self,guest,room):
         self.guest_list.remove(guest)
@@ -21,3 +23,11 @@ class Room:
 
     def add_song_to_list(self,song):
         self.song_list.append(song)
+
+    def check_till(self,room):
+        return self.till
+
+
+    def add_entry_fee_to_till(self,room):
+        self.till += self.entry_fee
+        

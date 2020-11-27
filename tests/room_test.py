@@ -42,7 +42,8 @@ class TestRoom(unittest.TestCase):
     def test_add_guest_to_list(self):
         self.room_1.add_guest_to_list(self.guest_1,self.room_1)
         self.assertEqual(1,len(self.room_1.guest_list))
-
+        self.assertEqual(30,self.guest_1.cash)
+        self.assertEqual(120,self.room_1.check_till(self.room_1))
     
     def test_add_guests_to_list(self):
         self.room_1.add_guest_to_list(self.guest_1,self.room_1)
@@ -95,3 +96,14 @@ class TestRoom(unittest.TestCase):
     def test_check_if_guest_has_enought_money3(self):
         self.room_2.add_guest_to_list(self.guest_3,self.room_2)
         self.assertEqual(1,len(self.room_2.guest_list))
+
+
+    def test_check_till(self):
+        self.assertEqual(self.room_1.till,self.room_1.check_till(self.room_1))
+
+
+    def test_check_if_fee_add_to_till(self):
+        self.room_1.add_entry_fee_to_till(self.room_1)
+        self.assertEqual(120,self.room_1.check_till(self.room_1))
+
+    
