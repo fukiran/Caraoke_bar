@@ -110,7 +110,9 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(120,self.room_1.check_till(self.room_1))
 
 
-    
+    def test_if_guest_fav_song_is_in_room(self):
+        self.room_1.add_song_to_list(self.song_1)
+        self.assertEqual("Whoo!",self.guest_1.fav_song_in_room(self.guest_1,self.room_1))
 
 
     
