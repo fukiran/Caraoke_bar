@@ -6,11 +6,13 @@ class Room:
         self.song_list = []
 
 
-    def add_guest_to_list(self,guest):
+    def add_guest_to_list(self,guest,room):
+        if room.capacity == len(room.guest_list):
+            return "Room is full, please wait outside"
         self.guest_list.append(guest)
 
 
-    def remove_guest_from_list(self,guest):
+    def remove_guest_from_list(self,guest,room):
         self.guest_list.remove(guest)
 
 
