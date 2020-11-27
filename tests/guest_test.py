@@ -8,6 +8,7 @@ class TestGuest(unittest.TestCase):
         self.guest_1 = Guest("Pierre")
         self.guest_2 = Guest("Alexander")
         self.guest_3 = Guest("Pepe")
+        self.guest_4 = Guest("Edi")
 
 
     def test_guest_has_name(self):
