@@ -52,5 +52,10 @@ class TestRoom(unittest.TestCase):
         self.assertEqual([],self.room_1.guest_list)
 
 
+    def test_song_to_room(self):
+        self.room_1.add_song_to_list(self.song_1)
+        self.assertEqual(1,len(self.room_1.song_list))
+
+
 
     
