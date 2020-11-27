@@ -16,3 +16,11 @@ class TestRoom(unittest.TestCase):
 
     def test_room_has_capacity(self):
         self.assertEqual(True,isinstance(self.room_1.capacity,int))
+
+
+    def test_guest_list_empty(self):
+        self.assertEqual([],self.room_1.guest_list)
+
+
+    def test_song_list_empty(self):
+        self.assertEqual([],self.room_2.song_list)
