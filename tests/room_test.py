@@ -92,6 +92,6 @@ class TestRoom(unittest.TestCase):
         self.assertEqual([],self.room_1.guest_list)
     
 
-    def test_check_if_guest_has_enought_money2(self):
+    def test_check_if_guest_has_enought_money3(self):
         self.room_2.add_guest_to_list(self.guest_3,self.room_2)
         self.assertEqual(1,len(self.room_2.guest_list))
