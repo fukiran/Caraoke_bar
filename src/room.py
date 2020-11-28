@@ -9,16 +9,13 @@ class Room:
 
 
     def add_guest_to_list(self,guest,room):
-
-        if room.capacity == len(room.guest_list):
+        if self.room_is_full(guest, room):
             return "Room is full, please wait outside"
-
-        if room.entry_fee > guest.cash:
-            return "No money, no caraoke"
-
-        guest.pay_entry_fee(guest,room)
-        self.guest_list.append(guest)
-        self.add_entry_fee_to_till(room)
+        else:
+            if not self.refuse_entry(guest,room):
+                guest.pay_entry_fee(guest,room)
+                self.guest_list.append(guest)
+                self.add_entry_fee_to_till(room)
 
     def remove_guest_from_list(self,guest,room):
         self.guest_list.remove(guest)
@@ -35,5 +32,21 @@ class Room:
         self.till += self.entry_fee
         
 
-    
+    def refuse_entry(self, guest, room):
+        if room.entry_fee > guest.cash:
+            return "No money, no caraoke"
+        else:
+            return False
+
+
+    def room_is_full(self, guest, room):
+        if room.capacity == len(room.guest_list):
+            return "Room is full, please wait outside"
+        else:
+            return False
+
+            
+        
+
+
         
