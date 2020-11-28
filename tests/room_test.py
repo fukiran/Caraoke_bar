@@ -40,13 +40,14 @@ class TestRoom(unittest.TestCase):
 
 
     def test_add_guest_to_list(self):
-        self.room_1.add_guest_to_list(self.guest_1,self.room_1)
+        room = self.room_1
+        room.add_guest_to_list(self.guest_1,room)
         #check if guest is added to the list
-        self.assertEqual(1,len(self.room_1.guest_list))
+        self.assertEqual(1,len(room.guest_list))
         #check if money is taken from the guest
         self.assertEqual(30,self.guest_1.cash)
         #check if money is added to the till
-        self.assertEqual(120,self.room_1.check_till(self.room_1))
+        self.assertEqual(120,room.check_till(room))
     
     def test_add_guests_to_list(self):
         room = self.room_1
@@ -56,9 +57,10 @@ class TestRoom(unittest.TestCase):
 
 
     def test_remove_guest_from_list(self):
-        self.room_1.add_guest_to_list(self.guest_1,self.room_1)
-        self.room_1.remove_guest_from_list(self.guest_1,self.room_1)
-        self.assertEqual([],self.room_1.guest_list)
+        room = self.room_1
+        room.add_guest_to_list(self.guest_1,room)
+        room.remove_guest_from_list(self.guest_1,room)
+        self.assertEqual([],room.guest_list)
 
 
     def test_song_to_room(self):
@@ -67,25 +69,28 @@ class TestRoom(unittest.TestCase):
 
 
     def test_full_room(self):
-        self.room_1.add_guest_to_list(self.guest_1,self.room_1)
-        self.room_1.add_guest_to_list(self.guest_2,self.room_1)
-        self.room_1.add_guest_to_list(self.guest_3,self.room_1)
-        self.assertEqual(self.room_1.capacity,len(self.room_1.guest_list))
+        room = self.room_1
+        room.add_guest_to_list(self.guest_1,room)
+        room.add_guest_to_list(self.guest_2,room)
+        room.add_guest_to_list(self.guest_3,room)
+        self.assertEqual(room.capacity,len(room.guest_list))
     
 
     def test_to_many_guests_in_room(self):
-        self.room_1.add_guest_to_list(self.guest_1,self.room_1)
-        self.room_1.add_guest_to_list(self.guest_2,self.room_1)
-        self.room_1.add_guest_to_list(self.guest_3,self.room_1)
-        self.assertEqual("Room is full, please wait outside",self.room_1.add_guest_to_list(self.guest_4,self.room_1))
+        room = self.room_1
+        room.add_guest_to_list(self.guest_1,room)
+        room.add_guest_to_list(self.guest_2,room)
+        room.add_guest_to_list(self.guest_3,room)
+        self.assertEqual("Room is full, please wait outside",room.add_guest_to_list(self.guest_4,room))
 
 
     def test_to_many_guests_in_room2(self):
-        self.room_1.add_guest_to_list(self.guest_1,self.room_1)
-        self.room_1.add_guest_to_list(self.guest_2,self.room_1)
-        self.room_1.add_guest_to_list(self.guest_3,self.room_1)
-        self.room_1.add_guest_to_list(self.guest_4,self.room_1)
-        self.assertEqual(self.room_1.capacity,len(self.room_1.guest_list))
+        room = self.room_1
+        room.add_guest_to_list(self.guest_1,room)
+        room.add_guest_to_list(self.guest_2,room)
+        room.add_guest_to_list(self.guest_3,room)
+        room.add_guest_to_list(self.guest_4,room)
+        self.assertEqual(room.capacity,len(room.guest_list))
 
 
     def test_check_if_guest_has_enough_money(self):
