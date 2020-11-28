@@ -49,9 +49,10 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(120,self.room_1.check_till(self.room_1))
     
     def test_add_guests_to_list(self):
-        self.room_1.add_guest_to_list(self.guest_1,self.room_1)
-        self.room_1.add_guest_to_list(self.guest_2,self.room_1)
-        self.assertEqual(2,len(self.room_1.guest_list))
+        room = self.room_1
+        room.add_guest_to_list(self.guest_1,room)
+        room.add_guest_to_list(self.guest_2,room)
+        self.assertEqual(2,len(room.guest_list))
 
 
     def test_remove_guest_from_list(self):
@@ -88,7 +89,7 @@ class TestRoom(unittest.TestCase):
 
 
     def test_check_if_guest_has_enough_money(self):
-        self.assertEqual("No money, no caraoke",self.room_2.refuse_entry(self.guest_4,self.room_2))
+        self.assertEqual(True,self.room_2.refuse_entry(self.guest_4,self.room_2))
 
 
     def test_check_if_guest_has_enough_money2(self):
@@ -113,7 +114,7 @@ class TestRoom(unittest.TestCase):
     def test_if_guest_fav_song_is_in_room(self):
         self.room_1.add_song_to_list(self.song_1)
         self.assertEqual("Whoo!",self.guest_1.fav_song_in_room(self.guest_1,self.room_1))
+    
 
-
-    # def test_sesion_end
+    # def test_sesion_time_end
     

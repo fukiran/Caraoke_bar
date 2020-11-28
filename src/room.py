@@ -16,6 +16,7 @@ class Room:
                 guest.pay_entry_fee(guest,room)
                 self.guest_list.append(guest)
                 self.add_entry_fee_to_till(room)
+                #self.add_song_to_list(song)#############
 
     def remove_guest_from_list(self,guest,room):
         self.guest_list.remove(guest)
@@ -30,21 +31,15 @@ class Room:
 
     def add_entry_fee_to_till(self,room):
         self.till += self.entry_fee
-        
+       
 
     def refuse_entry(self, guest, room):
-        if room.entry_fee > guest.cash:
-            return "No money, no caraoke"
-        else:
-            return False
+        return room.entry_fee > guest.cash
 
 
     def room_is_full(self, guest, room):
-        if room.capacity == len(room.guest_list):
-            return "Room is full, please wait outside"
-        else:
-            return False
-
+        return room.capacity == len(room.guest_list)
+            
             
         
 
