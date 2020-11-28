@@ -19,7 +19,7 @@ class Room:
                 self.add_entry_fee_to_till(room)
 
 
-    def remove_guest_from_list(self,guest,room):
+    def remove_guest_from_room(self,guest,room):
         self.guest_list.remove(guest)
 
 

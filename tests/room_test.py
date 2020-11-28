@@ -3,6 +3,7 @@ import unittest
 from src.song import Song
 from src.guest import Guest
 from src.room import Room
+from src.book import Book
 
 class TestRoom(unittest.TestCase):
     def setUp(self):
@@ -56,10 +57,10 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(2,len(room.guest_list))
 
 
-    def test_remove_guest_from_list(self):
+    def test_remove_guest_from_room(self):
         room = self.room_1
         room.add_guest_to_room(self.guest_1,room)
-        room.remove_guest_from_list(self.guest_1,room)
+        room.remove_guest_from_room(self.guest_1,room)
         self.assertEqual([],room.guest_list)
 
 
